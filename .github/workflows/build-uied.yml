@@ -1,0 +1,45 @@
+name: wxUiEditor builder
+
+on: workflow_dispatch
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW32
+          update: true
+          install: >-
+            git
+            wget
+            p7zip
+
+      - name: build wxUiEditor
+        shell: msys2 {0}
+        id: build
+        run: ./build.sh
+
+      - name: release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          body: |
+            This is wxUiEditor ${{ steps.build.outputs.BUILD_DATE }} build.
+          
+      - name: upload
+        id: upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ${{ steps.build.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.build.outputs.OUTPUT_NAME }}
+          asset_content_type: application/x-7z-compressed
