@@ -16,24 +16,37 @@ jobs:
             git
             wget
             p7zip
-            mingw-w64-i686-pkg-config
-            mingw-w64-i686-gtk3
+          location: D:\
 
-      - name: build wxUiEditor
+      - name: pre-build wxUiEditor
         shell: msys2 {0}
-        id: build
-        run: ./build.sh
+        id: prebuild
+        run: ./prebuild.sh
 
+      - name: build
+        shell: pwsh
+        id: build
+        run: |
+          $env:PATH = "D:\msys64\home\mingw32\bin;D:\msys64\usr\bin\;D:\msys64\mingw32\bin\;" + $env:PATH
+          cd D:\msys64\home\wxUiEditor\
+          cmake -G "Ninja Multi-Config" . -B build
+          cmake --build build --config Release --target wxUiEditor
+
+      - name: Prepare Release
+        shell: msys2 {0}
+        id: prerelease
+        run: ./release.sh
+      
       - name: release
         id: release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.build.outputs.RELEASE_NAME }}
-          release_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          tag_name: ${{ steps.prerelease.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.prerelease.outputs.RELEASE_NAME }}
           body: |
-            This is wxUiEditor ${{ steps.build.outputs.BUILD_DATE }} build.
+            This is wxUiEditor ${{ steps.prerelease.outputs.BUILD_DATE }} build.
           
       - name: upload
         id: upload
@@ -42,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ${{ steps.build.outputs.OUTPUT_BINARY }}
-          asset_name: ${{ steps.build.outputs.OUTPUT_NAME }}
+          asset_path: ${{ steps.prerelease.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.prerelease.outputs.OUTPUT_NAME }}
           asset_content_type: application/x-7z-compressed
