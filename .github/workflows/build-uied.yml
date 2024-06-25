@@ -17,6 +17,7 @@ jobs:
             wget
             p7zip
             mingw-w64-i686-pkg-config
+            mingw-w64-i686-gtk3
 
       - name: build wxUiEditor
         shell: msys2 {0}
