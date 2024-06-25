@@ -7,7 +7,7 @@ HOME=$(cygpath -m /home)
 NAME=wxUiEditor-build${BUILD_DATE}
 
 # Compress results
-7zr a -mx9 -mqs=on -mmt=on /home/${NAME}.7z /home/wxUiEditor
+7zr a -mx9 -mqs=on -mmt=on /home/${NAME}.7z /home/wxUiEditor/build/*
 
 # Upload binaries
 if [[ -v GITHUB_WORKFLOW ]]; then
