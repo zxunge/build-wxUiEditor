@@ -27,7 +27,6 @@ jobs:
         shell: pwsh
         id: build
         run: |
-          $env:PATH = "D:\msys64\home\mingw32\bin;D:\msys64\usr\bin\;D:\msys64\mingw32\bin\;" + $env:PATH
           cd D:\msys64\home\wxUiEditor\
           cmake -G "Ninja Multi-Config" . -B build
           cmake --build build --config Release --target wxUiEditor
