@@ -16,6 +16,7 @@ jobs:
             git
             wget
             p7zip
+            mingw-w64-pkg-config
 
       - name: build wxUiEditor
         shell: msys2 {0}
