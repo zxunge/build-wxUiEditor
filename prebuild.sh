@@ -2,9 +2,7 @@
 
 set -eux
 
-BUILD_DATE=20240625
 HOME=$(cygpath -m /home)
-NAME=wxUiEditor-build${BUILD_DATE}
 
 cp -rf ./* /home/
 cd /home
