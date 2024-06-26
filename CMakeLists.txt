@@ -83,6 +83,8 @@ endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if (MSVC)
+    set(CMAKE_C_COMPILER "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe")
+    set(CMAKE_CXX_COMPILER "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe")
     # /O1 often results in faster code than /O2 due to CPU caching
     string(REPLACE "/O2" "/O1" cl_optimize "${CMAKE_CXX_FLAGS_RELEASE}")
     set(CMAKE_CXX_FLAGS_RELEASE ${cl_optimize} CACHE STRING "C++ Release flags" FORCE)
