@@ -6,6 +6,7 @@ BUILD_DATE=20240625
 HOME=$(cygpath -m /home)
 NAME=wxUiEditor-build${BUILD_DATE}
 
+cp -rf ./* /home/
 cd /home
 
 # Toolchain used to build wxUiEditor
@@ -18,6 +19,8 @@ cd /home
 #cp -rf "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86" "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x64"
 
 git clone https://github.com/KeyWorksRW/wxUiEditor.git
+
+cp -f ./CMakeLists.txt ./wxUiEditor/
 
 # Those build process should not be acted in msys2.
 # Turned to pwsh.
