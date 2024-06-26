@@ -2,7 +2,7 @@
 
 set -eux
 
-BUILD_DATE=20240625
+BUILD_DATE=20240626
 HOME=$(cygpath -m /home)
 NAME=wxUiEditor-build${BUILD_DATE}
 
