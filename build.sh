@@ -2,7 +2,7 @@
 
 set -eux
 
-BUILD_DATE=20240625
+BUILD_DATE=20240627
 HOME=$(cygpath -m /home)
 NAME=wxUiEditor-build${BUILD_DATE}
 
@@ -13,11 +13,13 @@ cd /home
 #7z x winlibs-i686-posix-dwarf-gcc-14.1.0-mingw-w64ucrt-12.0.0-r2.7z -r -o/home
 #export PATH=/home/mingw32/bin/:$PATH
 
+export PATH="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/:"$PATH
+
 git clone https://github.com/KeyWorksRW/wxUiEditor.git
 cd wxUiEditor/
 
 # Build!
-cmake -G "Ninja Multi-Config" . -B build
+cmake -G "Visual Studio 17 2022" . -B build
 cmake --build build --config Release --target wxUiEditor
 
 # Compress results
