@@ -30,7 +30,7 @@ jobs:
           cd D:\temp
           git clone https://github.com/KeyWorksRW/wxUiEditor.git
           cd wxUiEditor\
-          cmake -G "Unix Makefiles" . -B build -D CMAKE_CXX_COMPILER=cl.exe -D CMAKE_C_COMPILER=cl.exe
+          cmake -G "Unix Makefiles" . -B build -D CMAKE_CXX_COMPILER="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe" -D CMAKE_C_COMPILER="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe"
           cmake --build build --config Release --target wxUiEditor
 
       - name: release
