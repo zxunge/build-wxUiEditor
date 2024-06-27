@@ -21,7 +21,8 @@ git clone https://github.com/KeyWorksRW/wxUiEditor.git
 cd wxUiEditor/
 
 # Build!
-cmake -G "Unix Makefiles" . -B build -D CMAKE_CXX_COMPILER="/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe"
+cmake -G "Unix Makefiles" . -B build 
+#-D CMAKE_CXX_COMPILER="/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe"
 cmake --build build --config Release --target wxUiEditor
 
 # Compress results
