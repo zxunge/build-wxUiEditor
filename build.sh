@@ -14,6 +14,7 @@ cd /home
 #export PATH=/home/mingw32/bin/:$PATH
 
 export PATH="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/:"$PATH
+export CXX=cl.exe
 
 git clone https://github.com/KeyWorksRW/wxUiEditor.git
 cd wxUiEditor/
