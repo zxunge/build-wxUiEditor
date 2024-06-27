@@ -19,7 +19,7 @@ git clone https://github.com/KeyWorksRW/wxUiEditor.git
 cd wxUiEditor/
 
 # Build!
-cmake -G "Visual Studio 17 2022" . -B build
+cmake -G "Ninja Multi-Config" . -B build
 cmake --build build --config Release --target wxUiEditor
 
 # Compress results
