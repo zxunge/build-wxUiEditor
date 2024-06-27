@@ -18,6 +18,7 @@ jobs:
             p7zip
             cmake
             patch
+            ninja
 
       - name: build wxUiEditor
         shell: msys2 {0}
