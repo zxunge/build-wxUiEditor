@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
 
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
@@ -16,37 +16,22 @@ jobs:
             git
             wget
             p7zip
-          location: D:\
 
-      - name: pre-build wxUiEditor
+      - name: build wxUiEditor
         shell: msys2 {0}
-        id: prebuild
-        run: ./prebuild.sh
-
-      - name: build
-        shell: pwsh
         id: build
-        run: |
-          cd D:\msys64\home\wxUiEditor\
-          cmake -G "Visual Studio 17 2022" . -B build
-          msys2 -c 'cp -rf "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/*" "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x64/"'
-          cmake --build build --config Release --target wxUiEditor
+        run: ./build.sh
 
-      - name: Prepare Release
-        shell: msys2 {0}
-        id: prerelease
-        run: ./release.sh
-      
       - name: release
         id: release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.prerelease.outputs.RELEASE_NAME }}
-          release_name: ${{ steps.prerelease.outputs.RELEASE_NAME }}
+          tag_name: ${{ steps.build.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.build.outputs.RELEASE_NAME }}
           body: |
-            This is wxUiEditor ${{ steps.prerelease.outputs.BUILD_DATE }} build.
+            This is wxUiEditor ${{ steps.build.outputs.BUILD_DATE }} build.
           
       - name: upload
         id: upload
@@ -55,6 +40,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ${{ steps.prerelease.outputs.OUTPUT_BINARY }}
-          asset_name: ${{ steps.prerelease.outputs.OUTPUT_NAME }}
+          asset_path: ${{ steps.build.outputs.OUTPUT_BINARY }}
+          asset_name: ${{ steps.build.outputs.OUTPUT_NAME }}
           asset_content_type: application/x-7z-compressed
