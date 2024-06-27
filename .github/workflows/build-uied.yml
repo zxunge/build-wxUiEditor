@@ -18,13 +18,20 @@ jobs:
             p7zip
             cmake
             patch
-            ninja
             make
+          location: D:\
 
       - name: build wxUiEditor
-        shell: msys2 {0}
+        shell: pwsh
         id: build
-        run: ./build.sh
+        run: |
+          $env:PATH="D:\msys64\usr\bin\;" + $env:PATH
+          mkdir D:\temp
+          cd D:\temp
+          git clone https://github.com/KeyWorksRW/wxUiEditor.git
+          cd wxUiEditor\
+          cmake -G "Unix Makefiles" . -B build -A x86
+          cmake --build build --config Release --target wxUiEditor
 
       - name: release
         id: release
