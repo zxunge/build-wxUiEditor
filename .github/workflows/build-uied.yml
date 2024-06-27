@@ -16,6 +16,8 @@ jobs:
             git
             wget
             p7zip
+            cmake
+            patch
 
       - name: build wxUiEditor
         shell: msys2 {0}
