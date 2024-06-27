@@ -23,7 +23,7 @@ cmake -G "Visual Studio 17 2022" . -B build
 cmake --build build --config Release --target wxUiEditor
 
 # Compress results
-7zr a -mx9 -mqs=on -mmt=on /home/${NAME}.7z /home/wxUiEditor
+7zr a -mx9 -mqs=on -mmt=on /home/${NAME}.7z /home/wxUiEditor/build/bin
 
 # Upload binaries
 if [[ -v GITHUB_WORKFLOW ]]; then
