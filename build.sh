@@ -13,15 +13,15 @@ cd /home
 #7z x winlibs-i686-posix-dwarf-gcc-14.1.0-mingw-w64ucrt-12.0.0-r2.7z -r -o/home
 #export PATH=/home/mingw32/bin/:$PATH
 
-export PATH='C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.40.33807\bin\Hostx64\x86:'$PATH
-export CXX='C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.40.33807\bin\Hostx64\x86\cl.exe'
-export CC='C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.40.33807\bin\Hostx64\x86\cl.exe'
+export PATH='/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe:'$PATH
+export CXX='/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe'
+export CC='/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe'
 
 git clone https://github.com/KeyWorksRW/wxUiEditor.git
 cd wxUiEditor/
 
 # Build!
-cmake -G "Ninja Multi-Config" . -B build -D CMAKE_CXX_COMPILER="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe"
+cmake -G "Ninja Multi-Config" . -B build -D CMAKE_CXX_COMPILER="/c/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x86/cl.exe"
 cmake --build build --config Release --target wxUiEditor
 
 # Compress results
