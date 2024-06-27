@@ -19,6 +19,7 @@ jobs:
             cmake
             patch
             ninja
+            make
 
       - name: build wxUiEditor
         shell: msys2 {0}
