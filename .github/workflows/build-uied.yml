@@ -16,7 +16,6 @@ jobs:
             p7zip
             make
             unzip
-            ninja
           location: D:\
 
       - name: Download CMAKE
@@ -27,7 +26,7 @@ jobs:
         shell: pwsh
         id: build
         run: |
-          $env:PATH="D:\temp\cmake-3.28.6-windows-i386\bin\;D:\msys64\usr\bin\;" + $env:PATH
+          $env:PATH="D:\temp\cmake-3.28.6-windows-i386\bin\;D:\temp\ninja\;" + $env:PATH
           cd D:\temp
           git clone https://github.com/KeyWorksRW/wxUiEditor.git
           cd wxUiEditor\
