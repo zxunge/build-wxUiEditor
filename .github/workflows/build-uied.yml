@@ -20,7 +20,7 @@ jobs:
 
       - name: Download CMAKE
         shell: msys2 {0}
-        run: ./cmake.sh
+        run: ./cmake-ninja.sh
       
       - name: build wxUiEditor
         shell: pwsh
