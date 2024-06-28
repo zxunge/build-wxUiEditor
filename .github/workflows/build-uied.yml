@@ -19,14 +19,18 @@ jobs:
             cmake
             patch
             make
+            unzip
           location: D:\
 
+      - name: Download CMAKE
+        shell: msys2 {0}
+        run: ./cmake.sh
+      
       - name: build wxUiEditor
         shell: pwsh
         id: build
         run: |
-          $env:PATH="D:\msys64\usr\binn\;" + $env:PATH
-          mkdir D:\temp
+          $env:PATH="D:\temp\cmake-3.29.6-windows-i386\bin\;" + $env:PATH
           cd D:\temp
           git clone https://github.com/KeyWorksRW/wxUiEditor.git
           cd wxUiEditor\
