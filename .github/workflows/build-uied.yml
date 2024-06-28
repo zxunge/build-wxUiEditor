@@ -16,7 +16,6 @@ jobs:
             git
             wget
             p7zip
-            cmake
             patch
             make
             unzip
@@ -30,7 +29,7 @@ jobs:
         shell: pwsh
         id: build
         run: |
-          $env:PATH="D:\temp\cmake-3.29.6-windows-i386\bin\;" + $env:PATH
+          $env:PATH="D:\temp\cmake-3.28.6-windows-i386\bin\;" + $env:PATH
           cd D:\temp
           git clone https://github.com/KeyWorksRW/wxUiEditor.git
           cd wxUiEditor\
